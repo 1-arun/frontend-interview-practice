@@ -3,7 +3,6 @@
 CHARACTER FREQUENCY & COUNTING PROBLEMS
 ========================================
 */
-
 /*
 1. Count Vowels In A String
 
@@ -18,6 +17,21 @@ Output:
 Explanation:
 'o', 'e', 'e'
 */
+
+// approach 1 without method
+let str = "frontEnd"
+
+let vowels = "aeiouAEIOU"
+function countVowels(str) {
+  count = 0
+  for(let i = 0; i < str.length; i++) {
+    if(((str[i] >= "a" && str[i] <= "z") ||(str[i] >= "A" && str[i] <= "Z" )) && !vowels.includes(str[i])) {
+      count++
+    }
+  }
+  return count
+}
+// console.log(countVowels(str))
 
 /*
 2. Count Consonants In A String
@@ -34,6 +48,21 @@ Explanation:
 'f', 'r', 'n', 't', 'n'
 */
 
+// approach 1 without method
+let strr = "frontEnd"
+
+let vowel = "aeiouAEIOU"
+function countVowels(str) {
+ let  count = 0
+  for(let i = 0; i < str.length; i++) {
+    if(((str[i] >= "a" && str[i] <= "z") ||(str[i] >= "A" && str[i] <= "Z" )) && !vowel.includes(str[i])) {
+      count++
+    }
+  }
+  return count
+}
+// console.log(countVowels(str))
+
 /*
 3. Count Uppercase Letters
 
@@ -48,6 +77,20 @@ Output:
 Explanation:
 H,W,O,R,L,D
 */
+
+// we can solve this problems using regex, filter method, ascii/unique code method
+let uppar = "HelloWORLD"
+function countUpperCase(str){
+  let count = 0;
+  for(let i = 0; i < str.length; i++) {
+
+    if(str[i] >= "A" && str[i] <= "Z" ){
+      count++
+    }
+  }
+  return count
+}
+// console.log(countUpperCase(uppar))
 
 /*
 4. Count Lowercase Letters
@@ -64,6 +107,19 @@ Explanation:
 e,l,l,o
 */
 
+let lower = "HelloWORLD"
+function countLowerCase(str){
+  let count = 0;
+  for(let i = 0; i < str.length; i++) {
+
+    if(str[i] >= "a" && str[i] <= "z" ){
+      count++
+    }
+  }
+  return count
+}
+// console.log(countLowerCase(lower))
+
 /*
 5. Count Digits In A String
 
@@ -78,7 +134,18 @@ Output:
 Explanation:
 1,2,3,4,5
 */
+let countDigit = "abc123xyz45"
+function countDigits(str) {
+  let count = 0;
+  for(let i = 0; i < str.length; i++) {
+    if( str[i] >= 0 && str[i] <= 9 ){
+      count++
+    }
+  }
+  return count;
 
+}
+console.log(countDigits(countDigit),":this much digits")
 /*
 6. Count Special Characters
 
@@ -93,6 +160,12 @@ Output:
 Explanation:
 @,#,!
 */
+
+
+let specialCharacter = "hello@123#world!"
+function specialCharacters (str) {
+  
+}
 
 /*
 7. Count Words In A Sentence
