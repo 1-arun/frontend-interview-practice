@@ -19,17 +19,20 @@ Explanation:
 */
 
 // approach 1 without method
-let str = "frontEnd"
+let str = "frontEnd";
 
-let vowels = "aeiouAEIOU"
+let vowels = "aeiouAEIOU";
 function countVowels(str) {
-  count = 0
-  for(let i = 0; i < str.length; i++) {
-    if(((str[i] >= "a" && str[i] <= "z") ||(str[i] >= "A" && str[i] <= "Z" )) && !vowels.includes(str[i])) {
-      count++
+  count = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (
+      ((str[i] >= "a" && str[i] <= "z") || (str[i] >= "A" && str[i] <= "Z")) &&
+      !vowels.includes(str[i])
+    ) {
+      count++;
     }
   }
-  return count
+  return count;
 }
 // console.log(countVowels(str))
 
@@ -49,17 +52,20 @@ Explanation:
 */
 
 // approach 1 without method
-let strr = "frontEnd"
+let strr = "frontEnd";
 
-let vowel = "aeiouAEIOU"
+let vowel = "aeiouAEIOU";
 function countVowels(str) {
- let  count = 0
-  for(let i = 0; i < str.length; i++) {
-    if(((str[i] >= "a" && str[i] <= "z") ||(str[i] >= "A" && str[i] <= "Z" )) && !vowel.includes(str[i])) {
-      count++
+  let count = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (
+      ((str[i] >= "a" && str[i] <= "z") || (str[i] >= "A" && str[i] <= "Z")) &&
+      !vowel.includes(str[i])
+    ) {
+      count++;
     }
   }
-  return count
+  return count;
 }
 // console.log(countVowels(str))
 
@@ -79,16 +85,15 @@ H,W,O,R,L,D
 */
 
 // we can solve this problems using regex, filter method, ascii/unique code method
-let uppar = "HelloWORLD"
-function countUpperCase(str){
+let uppar = "HelloWORLD";
+function countUpperCase(str) {
   let count = 0;
-  for(let i = 0; i < str.length; i++) {
-
-    if(str[i] >= "A" && str[i] <= "Z" ){
-      count++
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] >= "A" && str[i] <= "Z") {
+      count++;
     }
   }
-  return count
+  return count;
 }
 // console.log(countUpperCase(uppar))
 
@@ -107,16 +112,15 @@ Explanation:
 e,l,l,o
 */
 
-let lower = "HelloWORLD"
-function countLowerCase(str){
+let lower = "HelloWORLD";
+function countLowerCase(str) {
   let count = 0;
-  for(let i = 0; i < str.length; i++) {
-
-    if(str[i] >= "a" && str[i] <= "z" ){
-      count++
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] >= "a" && str[i] <= "z") {
+      count++;
     }
   }
-  return count
+  return count;
 }
 // console.log(countLowerCase(lower))
 
@@ -134,18 +138,17 @@ Output:
 Explanation:
 1,2,3,4,5
 */
-let countDigit = "abc123xyz45"
+let countDigit = "abc123xyz45";
 function countDigits(str) {
   let count = 0;
-  for(let i = 0; i < str.length; i++) {
-    if( str[i] >= 0 && str[i] <= 9 ){
-      count++
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] >= 0 && str[i] <= 9) {
+      count++;
     }
   }
   return count;
-
 }
-console.log(countDigits(countDigit),":this much digits")
+// console.log(countDigits(countDigit),":this much digits")
 /*
 6. Count Special Characters
 
@@ -161,11 +164,28 @@ Explanation:
 @,#,!
 */
 
+// approach 1 using manual
 
-let specialCharacter = "hello@123#world!"
-function specialCharacters (str) {
-  
+let specialCharacter = "hello@123#world!";
+function specialCharacters(str) {
+  count = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (
+      !(
+        (str[i] >= "0" && str[i] <= "9") ||
+        (str[i] >= "a" && str[i] <= "z") ||
+        (str[i] >= "A" && str[i] <= "Z")
+      )
+    ) {
+      count++;
+    }
+  }
+  return count;
 }
+
+// console.log(specialCharacters(specialCharacter))
+
+// approach 2 with method
 
 /*
 7. Count Words In A Sentence
@@ -179,6 +199,50 @@ Output:
 4
 */
 
+// approach 1 using split("") method
+let countWord = "I love React JS";
+function countWords(str) {
+  let count = 0;
+  str = str.split("  ");
+  for (let i = 0; i < str.length; i++) {
+    count++;
+  }
+  return count;
+}
+// console.log(countWords(countWord))
+
+// approach 2 without split("") method
+let countWordss = "I love React JS";
+function countwords(str) {
+  let isWords = false;
+  let count = 0;
+  for (let i = 0; i < countWordss.length; i++) {
+    if (countWordss[i] !== " " && !isWords) {
+      count++;
+      isWords = true;
+    }
+    if (countWordss[i] === " ") {
+      isWords = false;
+    }
+  }
+  return count;
+}
+// console.log(countwords(countWordss))
+
+// approach 3
+let cou = "I love React JS";
+function countWords(str) {
+  return str.split(" ").length;
+}
+// console.log(countWords(cou), ":this o")
+
+// approach 3 with regex
+
+function countWords(str) {
+  return str.trim().split(/\s+/).length;
+}
+//  console.log(countWords(" I Love   JS ARUN BHAI "))
+
 /*
 8. Find Frequency Of A Given Character
 
@@ -191,6 +255,17 @@ char = "a"
 Output:
 3
 */
+let char = "a";
+function findFrequency(str, char) {
+  let count = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === char) {
+      count++;
+    }
+  }
+  return count;
+}
+// console.log(findFrequency("banana", char))
 
 /*
 9. Count Vowels (Case Insensitive)
@@ -203,6 +278,19 @@ Input:
 Output:
 5
 */
+let input = "AEouxyz";
+function countVowels(str) {
+  let count = 0;
+  let vowels = "aeiou";
+  str = str.toLowerCase().split("");
+  for (let i = 0; i < str.length; i++) {
+    if (vowels.includes(str[i])) {
+      count++;
+    }
+  }
+  return count;
+}
+// console.log(countVowels(input));
 
 /*
 10. Count Words (Handle Extra Spaces)
@@ -216,6 +304,29 @@ Output:
 Explanation:
 Ignore extra spaces.
 */
+// approache 1 with method
+function countsWordsHandleSpaces(str) {
+  return str.trim().split(/\s+/).length;
+}
+// console.log(countsWordsHandleSpaces("   I    love     React   "))
+
+// approach without method
+let extraSpaces = "   I    love     React   ";
+function countWords(str) {
+  let count = 0;
+  let inWords = false;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] !== " " && !inWords) {
+      count++;
+      inWords = true;
+    }
+    if (str[i] === " ") {
+      inWords = false;
+    }
+  }
+  return count;
+}
+// console.log(countWords(extraSpaces))
 
 /*
 11. First Non-Repeating Character
@@ -228,6 +339,36 @@ Input:
 Output:
 "l"
 */
+
+function nonRepeating(str) {
+  let count = 0;
+  for (let i = 0; i < str.length; i++) {
+    for (let j = 0; j < str.length; j++) {
+      if (str[i] === str[j]) {
+        count++;
+      }
+    }
+    if (count === 1) {
+      return str[i];
+    }
+  }
+}
+// console.log(nonRepeating("leetcode"))
+
+// approach 2
+
+function nonRepeatingg(str) {
+  let freq = {};
+  for (let char of str) {
+    freq[char] = (freq[char] || 0) + 1;
+  }
+  for (let char of str) {
+    if (freq[char] === 1) {
+      return char;
+    }
+  }
+}
+// console.log(nonRepeatingg("aeetcode"))
 
 /*
 12. Character Frequency Map
@@ -244,6 +385,27 @@ Output:
   c: 1
 }
 */
+// approach 1
+function freqofChar(str) {
+  let freq = {};
+  for (let char of str) {
+    freq[char] = (freq[char] || 0) + 1;
+  }
+  return freq;
+}
+// console.log(freqofChar("aabbbc"))
+
+// approach 2
+
+function freqofChar(str) {
+  let map = new map();
+  for (let char of str) {
+    map.set(char, map.get(char || 0 + 1));
+  }
+
+  for (let char of str) {
+  }
+}
 
 /*
 13. Most Frequent Character
@@ -259,3 +421,59 @@ Output:
 Explanation:
 'a' appears 2 times.
 */
+
+// approach 1 without method 
+function mostFreq(str) {
+  let freq = {};
+  let maxFreq = 0;
+  let maxChar = "";
+  for (let i = 0; i < str.length; i++) {
+    freq[str[i]] = (freq[str[i]] || 0) + 1;
+
+    if (freq[str[i]] > maxFreq) {
+      maxFreq = freq[str[i]];
+      maxChar = str[i];
+    }
+  }
+  return maxChar;
+}
+// console.log(mostFreq("javascript"));
+
+// approach 2 
+function findFreqOfChar(str) {
+  let freq = {}
+ for(let char of str) {
+  freq[char] = (freq[char] || 0) + 1
+ }
+ let maxFreq = 0
+ let maxChar = ""
+ for(let [key] in  freq) {
+  if(freq[key] > maxFreq) {
+    maxFreq = freq[key]
+    maxChar = key
+  }
+ }
+ return maxChar
+}
+console.log(findFreqOfChar("javascript"))
+
+// approach 3 using map method 
+
+function find(str) {
+    let map = new Map()
+    for(let char of str) {
+        map.set(char, (map.get(char) || 0 ) + 1)
+    }
+    
+    let maxFreq  = 0;
+    let maxChar = ""
+    for(let [key, value]  of map) {
+        if(value > maxFreq) {
+            maxFreq = value
+            maxChar = key
+        }
+    }
+    return maxChar;
+}
+// console.log(find("javascript"))
+
