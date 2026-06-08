@@ -1,4 +1,47 @@
 /*
+Quick revision problems
+*/
+
+/*
+0. Count Vowels, Consonants, Digits, and Special Characters
+
+Given a string, count and return the number of vowels, consonants,
+digits, and special characters in one traversal.
+
+Input:
+"Hello123@ World!"
+
+Output:
+{
+  vowels: 3,
+  consonants: 7,
+  digits: 3,
+  specialChars: 3
+}
+*/
+
+function countCharTypes(str) {
+  const result = { vowels: 0, consonants: 0, digits: 0, specialChars: 0 };
+  const vowelSet = "aeiouAEIOU";
+
+  for (let ch of str) {
+    if (vowelSet.includes(ch)) {
+      result.vowels++;
+    } else if ((ch >= "a" && ch <= "z") || (ch >= "A" && ch <= "Z")) {
+      result.consonants++;
+    } else if (ch >= "0" && ch <= "9") {
+      result.digits++;
+    } else if (ch !== " ") {
+      result.specialChars++;
+    }
+  }
+
+  return result;
+}
+
+// console.log(countCharTypes('Hello123@ World!'))
+
+/*
 ========================================
 CHARACTER FREQUENCY & COUNTING PROBLEMS
 ========================================
@@ -422,7 +465,7 @@ Explanation:
 'a' appears 2 times.
 */
 
-// approach 1 without method 
+// approach 1 without method
 function mostFreq(str) {
   let freq = {};
   let maxFreq = 0;
@@ -439,41 +482,96 @@ function mostFreq(str) {
 }
 // console.log(mostFreq("javascript"));
 
-// approach 2 
+// approach 2
 function findFreqOfChar(str) {
-  let freq = {}
- for(let char of str) {
-  freq[char] = (freq[char] || 0) + 1
- }
- let maxFreq = 0
- let maxChar = ""
- for(let [key] in  freq) {
-  if(freq[key] > maxFreq) {
-    maxFreq = freq[key]
-    maxChar = key
+  let freq = {};
+  for (let char of str) {
+    freq[char] = (freq[char] || 0) + 1;
   }
- }
- return maxChar
+  let maxFreq = 0;
+  let maxChar = "";
+  for (let [key] in freq) {
+    if (freq[key] > maxFreq) {
+      maxFreq = freq[key];
+      maxChar = key;
+    }
+  }
+  return maxChar;
 }
-console.log(findFreqOfChar("javascript"))
+console.log(findFreqOfChar("javascript"));
 
-// approach 3 using map method 
+// approach 3 using map method
 
 function find(str) {
-    let map = new Map()
-    for(let char of str) {
-        map.set(char, (map.get(char) || 0 ) + 1)
+  let map = new Map();
+  for (let char of str) {
+    map.set(char, (map.get(char) || 0) + 1);
+  }
+
+  let maxFreq = 0;
+  let maxChar = "";
+  for (let [key, value] of map) {
+    if (value > maxFreq) {
+      maxFreq = value;
+      maxChar = key;
     }
-    
-    let maxFreq  = 0;
-    let maxChar = ""
-    for(let [key, value]  of map) {
-        if(value > maxFreq) {
-            maxFreq = value
-            maxChar = key
-        }
-    }
-    return maxChar;
+  }
+  return maxChar;
 }
 // console.log(find("javascript"))
 
+// --- Export clean utilities for external tests ---
+function mostFreqChar(str) {
+  if (!str) return null;
+  const freq = Object.create(null);
+  for (let ch of str) freq[ch] = (freq[ch] || 0) + 1;
+  let max = 0,
+    key = null;
+  for (let k in freq)
+    if (freq[k] > max) {
+      max = freq[k];
+      key = k;
+    }
+  return key;
+}
+
+function countConsonants(str) {
+  if (!str) return 0;
+  const vowels = "aeiouAEIOU";
+  let c = 0;
+  for (let ch of str) {
+    if ((ch >= "a" && ch <= "z") || (ch >= "A" && ch <= "Z")) {
+      if (!vowels.includes(ch)) c++;
+    }
+  }
+  return c;
+}
+
+function countWordsClean(str) {
+  if (!str) return 0;
+  const s = str.trim();
+  return s === "" ? 0 : s.split(/\s+/).length;
+}
+
+function findFrequencyClean(str, target) {
+  if (!str) return 0;
+  let c = 0;
+  for (let ch of str) if (ch === target) c++;
+  return c;
+}
+
+function countVowelsClean(str) {
+  if (!str) return 0;
+  const vowels = "aeiouAEIOU";
+  let c = 0;
+  for (let ch of str) if (vowels.includes(ch)) c++;
+  return c;
+}
+
+module.exports = {
+  countVowels: countVowelsClean,
+  countConsonants: countConsonants,
+  countWords: countWordsClean,
+  findFrequency: findFrequencyClean,
+  mostFreqChar: mostFreqChar,
+};
